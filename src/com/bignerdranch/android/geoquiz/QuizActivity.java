@@ -8,6 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * A class representing an activity in which users' geography knowledge is tested with a series of
+ * True/False questions.
+ *
+ * @author Bill Phillips
+ * @author Brian Hardy
+ * @author AJ Parmidge
+ */
 public class QuizActivity extends Activity {
 
     private Button mTrueButton;
