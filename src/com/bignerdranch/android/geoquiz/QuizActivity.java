@@ -2,7 +2,6 @@ package com.bignerdranch.android.geoquiz;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +17,7 @@ import android.widget.Toast;
  * @author AJ Parmidge
  */
 public class QuizActivity extends Activity {
-    private static final String TAG = "QuizActivity";
+    // private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index";
 
     private Button mTrueButton;
@@ -93,7 +92,6 @@ public class QuizActivity extends Activity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
     }
 
