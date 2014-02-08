@@ -21,6 +21,7 @@ public class QuizActivity extends Activity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+    private Button mPrevButton;
     private TextView mQuestionTextView;
 
     private BooleanQuestion[] mQuestionBank = new BooleanQuestion[] {
@@ -81,6 +82,16 @@ public class QuizActivity extends Activity {
 
         mNextButton = (Button) findViewById(R.id.next_button);
         mNextButton.setOnClickListener(incrementQuestionHandler);
+
+        mPrevButton = (Button) findViewById(R.id.prev_button);
+        mPrevButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                mCurrentIndex = mCurrentIndex < 1 ? mQuestionBank.length - 1 : mCurrentIndex - 1;
+                updateQuestion();
+            }
+        });
 
         updateQuestion();
     }
