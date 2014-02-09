@@ -21,6 +21,8 @@ public class CheatActivity extends Activity {
     public static final String EXTRA_ANSWER_SHOWN = "com.bignerdranch.android.geoquiz.answer_shown";
 
     private boolean mAnswerIsTrue;
+    private boolean mAnswerIsShown;
+    private TextView mVerifyCheatIntentTextView;
     private TextView mAnswerTextView;
     private Button mShowAnswer;
 
@@ -38,22 +40,36 @@ public class CheatActivity extends Activity {
         // Answer will not be shown until the user presses the button.
         setAnswerShownResult(false);
 
-        mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
+        Intent i = getIntent();
+        mAnswerIsTrue = i.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
+        mAnswerIsShown = i.getBooleanExtra(EXTRA_ANSWER_SHOWN, false);
 
+        mVerifyCheatIntentTextView = (TextView) findViewById(R.id.verify_cheat_intent_text_view);
         mAnswerTextView = (TextView) findViewById(R.id.answer_text_view);
 
         mShowAnswer = (Button) findViewById(R.id.show_answer_button);
-        mShowAnswer.setOnClickListener(new View.OnClickListener() {
+        if (mAnswerIsShown) {
+            showAnswer();
+        } else {
+            mVerifyCheatIntentTextView.setText(R.string.verify_cheat_intent_text);
+            mShowAnswer.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                if (mAnswerIsTrue) {
-                    mAnswerTextView.setText(R.string.true_button);
-                } else {
-                    mAnswerTextView.setText(R.string.false_button);
+                @Override
+                public void onClick(View v) {
+                    showAnswer();
                 }
-                setAnswerShownResult(true);
-            }
-        });
+            });
+        }
+    }
+
+    private void showAnswer() {
+        mVerifyCheatIntentTextView.setText(R.string.accept_cheat_intent_text);
+        if (mAnswerIsTrue) {
+            mAnswerTextView.setText(R.string.true_button);
+        } else {
+            mAnswerTextView.setText(R.string.false_button);
+        }
+        mShowAnswer.setEnabled(false);
+        setAnswerShownResult(true);
     }
 }

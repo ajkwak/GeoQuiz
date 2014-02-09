@@ -37,7 +37,7 @@ public class QuizActivity extends Activity {
 
     private int mCurrentIndex = 0;
 
-    private boolean mIsCheater;
+    private boolean mIsCheater = false;
 
     private void updateQuestion() {
         int question = mQuestionBank[mCurrentIndex].getQuestion();
@@ -93,6 +93,7 @@ public class QuizActivity extends Activity {
                 Intent i = new Intent(QuizActivity.this, CheatActivity.class);
                 boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
                 i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
+                i.putExtra(CheatActivity.EXTRA_ANSWER_SHOWN, mIsCheater);
                 startActivityForResult(i, 0);
             }
         });
