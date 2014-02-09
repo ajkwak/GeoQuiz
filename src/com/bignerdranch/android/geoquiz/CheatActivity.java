@@ -7,6 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * A class representing an activity in which users can cheat by viewing the answer to the current
+ * quiz question.
+ *
+ * @author Bill Phillips
+ * @author Brian Hardy
+ * @author AJ Parmidge
+ */
 public class CheatActivity extends Activity {
     public static final String EXTRA_ANSWER_IS_TRUE =
             "com.bignerdranch.android.geoquiz.answer_is_true";
