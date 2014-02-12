@@ -16,9 +16,24 @@ import android.widget.TextView;
  * @author AJ Parmidge
  */
 public class CheatActivity extends Activity {
+    // private static final String TAG = "CheatActivity";
+    /**
+     * Key for storing whether or not the answer to a question is true as an extra in an
+     * {@link Intent}.
+     */
     public static final String EXTRA_ANSWER_IS_TRUE =
             "com.bignerdranch.android.geoquiz.answer_is_true";
-    public static final String EXTRA_ANSWER_SHOWN = "com.bignerdranch.android.geoquiz.answer_shown";
+    /**
+     * Key for storing whether or not the user cheated on a question as an extra in an
+     * {@link Intent}.
+     */
+    public static final String EXTRA_USER_CHEATED =
+            "com.bignerdranch.android.geoquiz.extra_user_cheated";
+    /**
+     * Key for storing whether or not the user cheated into the saved instance state {@link Bundle}
+     * for an {@link Activity}.
+     */
+    public static final String KEY_USER_CHEATED = "com.bignerdranch.android.geoquiz.user_cheated";
 
     private boolean mAnswerIsTrue;
     private boolean mAnswerIsShown;
@@ -28,7 +43,7 @@ public class CheatActivity extends Activity {
 
     private void setAnswerShownResult(boolean isAnswerShown) {
         Intent data = new Intent();
-        data.putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown);
+        data.putExtra(EXTRA_USER_CHEATED, isAnswerShown);
         setResult(RESULT_OK, data);
     }
 
@@ -42,7 +57,11 @@ public class CheatActivity extends Activity {
 
         Intent i = getIntent();
         mAnswerIsTrue = i.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
-        mAnswerIsShown = i.getBooleanExtra(EXTRA_ANSWER_SHOWN, false);
+        if (savedInstanceState != null) {
+            mAnswerIsShown = savedInstanceState.getBoolean(KEY_USER_CHEATED, false);
+        } else {
+            mAnswerIsShown = i.getBooleanExtra(EXTRA_USER_CHEATED, false);
+        }
 
         mVerifyCheatIntentTextView = (TextView) findViewById(R.id.verify_cheat_intent_text_view);
         mAnswerTextView = (TextView) findViewById(R.id.answer_text_view);
@@ -62,7 +81,14 @@ public class CheatActivity extends Activity {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean(KEY_USER_CHEATED, mAnswerIsShown);
+    }
+
     private void showAnswer() {
+        mAnswerIsShown = true;
         mVerifyCheatIntentTextView.setText(R.string.accept_cheat_intent_text);
         if (mAnswerIsTrue) {
             mAnswerTextView.setText(R.string.true_button);

@@ -93,7 +93,7 @@ public class QuizActivity extends Activity {
                 Intent i = new Intent(QuizActivity.this, CheatActivity.class);
                 boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
                 i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
-                i.putExtra(CheatActivity.EXTRA_ANSWER_SHOWN, mIsCheater);
+                i.putExtra(CheatActivity.EXTRA_USER_CHEATED, mIsCheater);
                 startActivityForResult(i, 0);
             }
         });
@@ -121,7 +121,7 @@ public class QuizActivity extends Activity {
         if (data == null) {
             return;
         }
-        mIsCheater = data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false);
+        mIsCheater = data.getBooleanExtra(CheatActivity.EXTRA_USER_CHEATED, false);
     }
 
     @Override
