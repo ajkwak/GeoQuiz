@@ -36,7 +36,6 @@ public class QuizActivity extends Activity {
     };
 
     private int mCurrentIndex = 0;
-
     private boolean mIsCheater = false;
 
     private void updateQuestion() {
@@ -111,6 +110,7 @@ public class QuizActivity extends Activity {
 
         if (savedInstanceState != null) {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+            mIsCheater = savedInstanceState.getBoolean(CheatActivity.KEY_USER_CHEATED, false);
         }
 
         updateQuestion();
@@ -128,6 +128,7 @@ public class QuizActivity extends Activity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+        savedInstanceState.putBoolean(CheatActivity.KEY_USER_CHEATED, mIsCheater);
     }
 
     @Override
