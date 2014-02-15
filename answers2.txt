@@ -1,0 +1,22 @@
+NOTE: To view this file as non-plaintext, please see this link: https://docs.google.com/a/mills.edu/document/d/15qzYwX-YnkgkxySZP4mX2blIbrfNgWm1ypwBusCo02E/edit
+
+AJ Parmidge
+CS280A: Mobile App Development
+Ellen Spertus
+Answers to Lab 3 Questions
+15 February 2014
+
+********************************************************************************
+Q1: Can period notation be used in the definition of QuizActivity in the manifest (Listing 5.4)?  If so, change it.  If not, why not?
+
+Yes, it can.  As the book states on page 97, "the dot at the start of this attribute's value tells the OS that this activity's class is in the package specified in the package attribute in the manifest element at the top of the file."  In GeoQuiz's Android Manifest, the package specified at the top of the file is "com.bignerdranch.android.geoquiz" which is, indeed, the package containing the QuizActivity class.
+
+********************************************************************************
+Q2: Why is android:layout_gravity specified in Figure 5.6 (layout-land/activity_quiz.xml) but not Listing 5.5 (layout/activity_quiz.xml)?
+
+Because in the layout_land/activity_quiz.xml, the cheat button is located in a FrameLayout, while in the layout/activity_quiz.xml, this element is in a LinearLayout.  Items in a LinearLayout cannot specify their own gravity, because the LinearLayout simply places all of the items within it into a single column or row.  The LinearLayout itself can specify gravity, which determines the alignment of *all* items within the LinearLayout.  The FrameLayout, on the other hand, allows each item contained within it to change its alignment within the FrameLayout based on the child's android:layout_gravity attribute.  This kind of layout gives the programmer more control as to exactly where on screen the elements within the layout are displayed.
+
+********************************************************************************
+Q3: Which activity is shown on the recents screen?  Does it depend on which activity you were most recently in?
+
+The activity shown on the recents screen is indeed the activity I was most recently in.  If I am in the QuizActivity and I press the "Recents" icon or the "Home" icon followed by the "Recents" icon, the screenshot of GeoQuiz in the "Recents" list is of QuizActivity (whichever question of QuizActivity I was on at the time).  If I choose QuizActivity, then it returns me to the question I was on when I exited.  Similarly, If I am in the CheatActivity and I press either "Recents" or "Home" followed by "Recents", then the recents screen displays the CheatActivity.  If I return to GeoQuiz, it displays the CheatActivity for the question I was on.  If I press the "Back" icon, it returns me to the QuizActivity screen for the question I was on when I las used QuizActivity.  This remained true even when I went into some other apps before returning to QuizActivity.
