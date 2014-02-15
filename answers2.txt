@@ -6,6 +6,9 @@ Ellen Spertus
 Answers to Lab 3 Questions
 15 February 2014
 
+REFLECTIONS:
+It was fun delving further into the architecture of the app during this lab.  I very much enjoyed completing all of the challenges, and I also did some extra cheat-prevention of my own (i.e. when the user clicks on cheat, shows the answer, then goes back, clicks on ‘Cheat!’ and then DOESN’T show the answer, the original program reset the mIsCheater such that the fact that the user DID cheat wasn’t retained).  The most frustrating part of this lab was trying to write stylistically “good” code, since there were several aspects of the android code style preferences that I am not yet familiar with.  All in all, quite fun.  One thing that bothered me, though, is why did the book in Chapter 6 suddenly start putting raw strings (the subtitle of GeoQuiz, e.g.) into its java files after specifically saying this shouldn’t be done in earlier chapters.  I tried to modify the code such that all of the strings were stored into strings.xml rather than left raw in the java files.
+
 ********************************************************************************
 Q1: Can period notation be used in the definition of QuizActivity in the manifest (Listing 5.4)?  If so, change it.  If not, why not?
 
