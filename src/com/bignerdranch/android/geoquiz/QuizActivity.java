@@ -18,7 +18,7 @@ import android.widget.Toast;
  *
  * @author Bill Phillips
  * @author Brian Hardy
- * @author AJ Parmidge
+ * @author ajkwak@users.noreply.github.com (AJ Parmidge)
  */
 public class QuizActivity extends Activity {
     // private static final String TAG = "QuizActivity";

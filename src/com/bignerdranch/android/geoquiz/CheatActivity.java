@@ -14,7 +14,7 @@ import android.widget.TextView;
  *
  * @author Bill Phillips
  * @author Brian Hardy
- * @author AJ Parmidge
+ * @author ajkwak@users.noreply.github.com (AJ Parmidge)
  */
 public class CheatActivity extends Activity {
     // private static final String TAG = "CheatActivity";
