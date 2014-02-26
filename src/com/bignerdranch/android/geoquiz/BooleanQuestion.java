@@ -14,7 +14,7 @@ public class BooleanQuestion {
     /**
      * Creates a new boolean (True/False) question.
      *
-     * @param question the text of the boolean question
+     * @param question the resource ID corresponding to the text of this boolean question
      * @param answer the answer to the question
      */
     public BooleanQuestion(int question, boolean answer) {
@@ -23,7 +23,7 @@ public class BooleanQuestion {
     }
 
     /**
-     * Returns the text of this boolean question.
+     * Returns the resource ID corresponding to the text of this boolean question.
      */
     public int getQuestion() {
         return mQuestion;
