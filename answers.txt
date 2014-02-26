@@ -12,22 +12,32 @@ Chapter 1
 ____________________________________________________________________________________________________
 1) Why are variable names preceded by "m"?
 
-Names of variables like mTrueButton and mFalseButton in the exercises for Chapter 1 are preceded by the letter ‘m’ because the variables are member (instance) variables.
+Names of variables like mTrueButton and mFalseButton in the exercises for
+Chapter 1 are preceded by the letter ‘m’ because the variables are member
+(instance) variables.
 ____________________________________________________________________________________________________
 2) Why is QuizActivity.this used instead of this in Listing 1.13?
 
-At this location (inside the anonymous listener class), ‘this’ refers to the anonymous OnClickListener object who is executing the code when the button is clicked. To specify the enclosing QuizActivity instance, QuizActivity.this must therefore be used.
+At this location (inside the anonymous listener class), ‘this’ refers to the
+anonymous OnClickListener object who is executing the code when the button is
+clicked. To specify the enclosing QuizActivity instance, QuizActivity.this must
+therefore be used.
 ____________________________________________________________________________________________________
 3) You might find this code in Listing 1.13 unclear:
-      Toast.makeText(QuizActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
-Break it into two separate statements. You will need to define a temporary variable. Do you prefer the one- or two-statement version?
+      Toast.makeText(
+              QuizActivity.this,
+              R.string.incorrect_toast, 
+              Toast.LENGTH_SHORT).show();
+Break it into two separate statements. You will need to define a temporary
+variable. Do you prefer the one- or two-statement version?
 
 Toast incorrectToast = Toast.makeText(QuizActivity.this,
         R.string.incorrect_toast,
         Toast.LENGTH_SHORT)
         incorrectToast.show();
 
-Personally, I prefer the one-statement version because it is more concise. Whenever method chaining is possible, I tend to use it.
+Personally, I prefer the one-statement version because it is more concise.
+Whenever method chaining is possible, I tend to use it.
 ____________________________________________________________________________________________________
 
 
@@ -36,22 +46,48 @@ ________________________________________________________________________________
 Chapter 2
 *********************
 ____________________________________________________________________________________________________
-4) Right after Listing 2.6, the authors admit that theirs is not the best option for storing model data. What isn't so great about it?
+4) Right after Listing 2.6, the authors admit that theirs is not the best option
+for storing model data. What isn't so great about it?
 
-It would be better to not create and store the array of model objects in the controller class. Instead, the model data should be created and stored elsewhere (not yet explained where might be a good place to create/store this model data).
+It would be better to not create and store the array of model objects in the
+controller class. Instead, the model data should be created and stored elsewhere
+(not yet explained where might be a good place to create/store this model data).
 ____________________________________________________________________________________________________
-5) In Listing 2.8, where is the method findViewById(int) defined? Why don't you have to specify its class name?. Why do you have to cast its return value?
+5) In Listing 2.8, where is the method findViewById(int) defined? Why don't you
+have to specify its class name?. Why do you have to cast its return value?
 
-The method findViewById(int) is defined in the Activity class. Since QuizActivity extends the Activity class, QuizActivity inherits the findViewById(int) method from Activity, and so this method is available to QuizActivity without specifying the class name of the method (it’s the same as saying this.findViewById(int). The return value of this method is a View object. Since Button is a subclass of View (i.e. since a Button is a View, but a View is not necessarily a Button), the View object returned by this method has to be cast to Button.
+The method findViewById(int) is defined in the Activity class. Since
+QuizActivity extends the Activity class, QuizActivity inherits the
+findViewById(int) method from Activity, and so this method is available to
+QuizActivity without specifying the class name of the method (it’s the same as
+saying this.findViewById(int). The return value of this method is a View object.
+Since Button is a subclass of View (i.e. since a Button is a View, but a View is
+not necessarily a Button), the View object returned by this method has to be
+cast to Button.
 ____________________________________________________________________________________________________
-6) Why is updateQuestion() (in Listing 2.9) an instance method (as opposed to a static method)?
+6) Why is updateQuestion() (in Listing 2.9) an instance method (as opposed to a
+static method)?
 
-Because the updateQuestion() method updates the instance variable mQuestionView (it also uses the instance variables mQuestionBank and mCurrentIndex). updateQuestion() cannot be static (at least not when it has no parameters) because it uses these instance variables. The instance variables mQuestionVIew and mCurrentIndex also cannot be made static because each is specific to a specific instance of QuizActivity. For example, two different instances of QuizActivity may be on different questions, so the mCurrentIndex should differ between the two and the mQuestionView of the two instances should be displaying different questions.
+Because the updateQuestion() method updates the instance variable mQuestionView
+(it also uses the instance variables mQuestionBank and mCurrentIndex).
+updateQuestion() cannot be static (at least not when it has no parameters)
+because it uses these instance variables. The instance variables mQuestionVIew
+and mCurrentIndex also cannot be made static because each is specific to a
+specific instance of QuizActivity. For example, two different instances of
+QuizActivity may be on different questions, so the mCurrentIndex should differ
+between the two and the mQuestionView of the two instances should be displaying
+different questions.
 ____________________________________________________________________________________________________
-7) In Listing 10, there is a 5-line if-else statement (counting braces). Rewrite it into a single statement, as simple as possible. Do you prefer the longer or shorter version?
+7) In Listing 10, there is a 5-line if-else statement (counting braces). Rewrite
+it into a single statement, as simple as possible. Do you prefer the longer or
+shorter version?
 
 messageResId = userPressedTrue == answerIsTrue
         ? R.string.correct_toast
         : R.string.incorrect_toast
 
-I don’t really prefer the one or the other (the 5-line if/else statement versus this more condensed version). I suppose I prefer this more condensed version because 1) it is more condensed, which is nice in and of itself, and 2) it makes it clear that the condition directly affects only the setting of a single variable.
+I don’t really prefer the one or the other (the 5-line if/else statement versus
+this more condensed version). I suppose I prefer this more condensed version
+because 1) it is more condensed, which is nice in and of itself, and 2) it makes
+it clear that the condition directly affects only the setting of a single
+variable.
